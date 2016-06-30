@@ -1,24 +1,25 @@
 import React from 'react';
 import { Link, routerShape, withRouter } from 'react-router';
+import { action } from 'mobx';
 import { observer } from 'mobx-react';
 
+import store from '../stores';
 
-@observer(['store'])
+
+@observer
 class NewInvoice extends React.Component {
-  constructor(props) {
-    super(props);
-    this.store = this.props.store;
+  @action componentWillMount() {
+    store.viewState.title = 'New Invoice';
   }
 
   createInvoice = () => {
-    const invoice = this.store.invoice.add();
+    const invoice = store.invoice.add();
     this.props.router.push(`/invoice/${invoice.id}`);
   }
 
   render() {
     return (
       <div>
-        <h1>New Invoice</h1>
         <button onClick={this.createInvoice}>Create invoice</button>
         <Link to="/">Cancel</Link>
       </div>
@@ -28,7 +29,6 @@ class NewInvoice extends React.Component {
 
 NewInvoice.propTypes = {
   router: routerShape,
-  store: React.PropTypes.object,
 };
 
 export default withRouter(NewInvoice);

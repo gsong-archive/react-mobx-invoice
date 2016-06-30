@@ -1,14 +1,17 @@
 import { v4 } from 'node-uuid';
 
 
-// status can be: draft, sent, partial, paid, overdue
+let invoiceNumber = 1;
+
 const list = [
   {
     id: v4(),
+    number: invoiceNumber,
     name: 'Acme Co.',
     email: 'acme@acme.co',
     invoiceDate: '2016-06-26',
     dueDate: '2016-06-27',
+    description: 'Super duper website development',
     notes: 'Hi I’m a note!',
     status: 'draft',
     tasks: [
@@ -31,21 +34,18 @@ const list = [
 
 export const getList = () => list;
 
-
-export const get = (id) => (
-  list.filter((invoice) => invoice.id === id)[0]
-);
+export const find = (id) => list.filter((invoice) => invoice.id === id)[0];
 
 
 export const create = (invoice) => {
-  const newInvoice = { ...invoice, id: v4() };
+  const newInvoice = { ...invoice, id: v4(), number: ++invoiceNumber };
   list.push(newInvoice);
   return newInvoice;
 };
 
 
 export const email = (id) => {
-  const invoice = getList(id);
+  const invoice = find(id);
   invoice.status = 'sent';
   // Send email
 };
