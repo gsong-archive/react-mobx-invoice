@@ -2,14 +2,15 @@ import React from 'react';
 import { Redirect, Route, Router, browserHistory } from 'react-router';
 import { Provider } from 'mobx-react';
 
-import Invoice from '../models/invoice';
+import InvoiceListModel from '../models/invoice-list';
+
 import InvoiceDetail from '../sections/invoice-detail';
 import InvoiceList from '../sections/invoice-list';
 import NewInvoice from '../sections/invoice-new';
 
 
 const state = {
-  invoice: new Invoice(),
+  invoiceList: new InvoiceListModel(),
 };
 
 

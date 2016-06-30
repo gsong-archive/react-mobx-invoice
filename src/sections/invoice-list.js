@@ -8,12 +8,12 @@ const InvoiceList = observer(['state'])(
       <h1>Invoice List</h1>
       <ul>
         {
-          state.invoice.invoices.map((invoice) => (
+          state.invoiceList.list.map((invoice) => (
             <li key={invoice.id}>{invoice.name}</li>
           ))
         }
       </ul>
-      <button onClick={state.invoice.create}>Push me!</button>
+      <button onClick={state.invoiceList.add}>Push me!</button>
     </div>
   )
 );

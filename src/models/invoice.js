@@ -3,7 +3,7 @@ import { action, observable } from 'mobx';
 import * as apiInvoice from '../api/invoice';
 
 
-export default class Invoice {
+export class InvoiceList {
   @observable invoices = [];
 
   constructor() {

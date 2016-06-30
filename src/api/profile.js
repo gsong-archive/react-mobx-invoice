@@ -7,4 +7,4 @@ const profile = {
 };
 
 
-export const getProfile = () => profile;
+export const get = () => profile;
