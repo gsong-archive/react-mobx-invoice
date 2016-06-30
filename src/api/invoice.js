@@ -38,7 +38,9 @@ export const get = (id) => (
 
 
 export const create = (invoice) => {
-  list.push({ ...invoice, id: v4() });
+  const newInvoice = { ...invoice, id: v4() };
+  list.push(newInvoice);
+  return newInvoice;
 };
 
 

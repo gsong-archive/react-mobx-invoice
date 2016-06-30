@@ -1,19 +1,24 @@
 import React from 'react';
+import { Link } from 'react-router';
 import { observer } from 'mobx-react';
 
 
-const InvoiceList = observer(['state'])(
-  ({ state }) => (
+const InvoiceList = observer(['store'])(
+  ({ store }) => (
     <div>
       <h1>Invoice List</h1>
       <ul>
         {
-          state.invoiceList.list.map((invoice) => (
-            <li key={invoice.id}>{invoice.name}</li>
+          store.invoice.list.map((invoice) => (
+            <li key={invoice.id}>
+              <Link to={`/invoice/${invoice.id}`}>
+                {invoice.name}
+              </Link>
+            </li>
           ))
         }
       </ul>
-      <button onClick={state.invoiceList.add}>Push me!</button>
+      <Link to="/invoice/new">Add invoice</Link>
     </div>
   )
 );

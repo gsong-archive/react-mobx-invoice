@@ -3,19 +3,20 @@ import { action, observable } from 'mobx';
 import * as apiInvoice from '../api/invoice';
 
 
-export default class InvoiceList {
+class Invoice {
   @observable list;
 
   constructor() {
-    this.get();
-  }
-
-  get() {
     this.list = apiInvoice.getList();
   }
 
   @action add = () => {
-    apiInvoice.create({ name: 'blah.co' });
-    this.get();
+    const invoice = apiInvoice.create({ name: 'blah.co' });
+    this.list.push(invoice);
+    return invoice;
   }
+
+  get = (id) => apiInvoice.get(id)
 }
+
+export default new Invoice();
