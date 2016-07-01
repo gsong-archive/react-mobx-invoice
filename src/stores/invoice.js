@@ -7,6 +7,8 @@ class InvoiceDetail {
   @observable client = '';
   @observable dueDate = '';
   @observable description = '';
+  @observable notes = '';
+  @observable status = 'draft';
   @observable items = [];
 
   constructor(invoice) {

@@ -40,7 +40,6 @@ export const create = (invoice) => {
     ...invoice,
     id: v4(),
     number: ++invoiceNumber,
-    status: 'draft',
   };
   list.push(newInvoice);
   return newInvoice;
