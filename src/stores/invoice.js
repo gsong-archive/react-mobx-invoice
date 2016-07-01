@@ -4,7 +4,7 @@ import { action, computed, observable } from 'mobx';
 import * as apiInvoice from '../api/invoice';
 
 
-class InvoiceDetail {
+export class InvoiceDetail {
   @observable client = '';
   @observable dueDate = moment().toISOString();
   @observable description = '';
@@ -30,7 +30,6 @@ class InvoiceDetail {
 
 class Invoice {
   @observable list;
-  @observable inProgress = new InvoiceDetail({});
 
   constructor() {
     this.list = apiInvoice.getList()
@@ -44,16 +43,6 @@ class Invoice {
   }
 
   find = (id) => new InvoiceDetail(apiInvoice.find(id))
-
-
-  @action updateInProgress(update) {
-    Object.assign(this.inProgress, update);
-  }
-
-
-  @action resetInProgress = () => {
-    this.inProgress = new InvoiceDetail({});
-  }
 }
 
 export default new Invoice();

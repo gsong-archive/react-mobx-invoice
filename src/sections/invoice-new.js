@@ -5,7 +5,7 @@ import { routerShape, withRouter } from 'react-router';
 
 import DatePicker from 'react-bootstrap-date-picker';
 import {
-  Button, ButtonToolbar, ControlLabel, FormControl, FormGroup,
+  Button, ButtonToolbar, ControlLabel, Form, FormControl, FormGroup,
 } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 
@@ -17,17 +17,17 @@ import store from '../stores';
 class NewInvoice extends React.Component {
   @action componentWillMount() {
     store.viewState.title = 'New Invoice';
-    this.invoice = store.invoice.inProgress;
+    this.invoice = store.inProgressInvoice.invoice;
   }
 
   createInvoice = (invoice) => () => {
     const newInvoice = store.invoice.add(invoice);
     this.props.router.push(`/invoice/${newInvoice.id}`);
-    store.invoice.resetInProgress();
+    store.inProgressInvoice.reset();
   }
 
-  updateInProgress = (e) => {
-    store.invoice.updateInProgress({ [e.target.id]: e.target.value });
+  update = (e) => {
+    store.inProgressInvoice.update({ [e.target.id]: e.target.value });
   }
 
   render = () => (
@@ -39,7 +39,7 @@ class NewInvoice extends React.Component {
             type="text"
             placeholder="Client name"
             defaultValue={this.invoice.client}
-            onChange={this.updateInProgress}
+            onChange={this.update}
           />
         </FormGroup>
 
@@ -59,7 +59,7 @@ class NewInvoice extends React.Component {
             type="text"
             placeholder="Short Description"
             defaultValue={this.invoice.description}
-            onChange={this.updateInProgress}
+            onChange={this.update}
           />
         </FormGroup>
 
@@ -69,27 +69,51 @@ class NewInvoice extends React.Component {
             componentClass="textarea"
             placeholder="Notes"
             defaultValue={this.invoice.notes}
-            onChange={this.updateInProgress}
+            onChange={this.update}
           />
         </FormGroup>
 
-        <ButtonToolbar>
-          <Button
-            bsStyle="primary"
-            onClick={this.createInvoice(this.invoice)}
-          >
-            Create invoice
+        <Form inline>
+          <FormGroup controlId="itemDescription">
+            <ControlLabel>Item</ControlLabel>
+            {' '}
+            <FormControl type="text" placeholder="Task or Item" />
+          </FormGroup>
+          {' '}
+          <FormGroup controlId="unitCost">
+            <ControlLabel>Unit Cost</ControlLabel>
+            {' '}
+            <FormControl type="number" placeholder="Rate or unit cost" />
+          </FormGroup>
+          {' '}
+          <FormGroup controlId="quantity">
+            <ControlLabel>Quantity</ControlLabel>
+            {' '}
+            <FormControl type="number" placeholder="Hours or quantity" />
+          </FormGroup>
+          {' '}
+          <Button type="submit" bsStyle="success">
+            Add Item
           </Button>
-          <LinkContainer to="/">
-            <Button bsStyle="link">Cancel</Button>
-          </LinkContainer>
-        </ButtonToolbar>
+        </Form>
       </section>
 
       <section>
         <h2>Preview</h2>
         <InvoiceDisplay invoice={this.invoice} />
       </section>
+
+      <ButtonToolbar>
+        <Button
+          bsStyle="primary"
+          onClick={this.createInvoice(this.invoice)}
+        >
+          Create invoice
+        </Button>
+        <LinkContainer to="/">
+          <Button bsStyle="link">Cancel</Button>
+        </LinkContainer>
+      </ButtonToolbar>
     </div>
   )
 }
