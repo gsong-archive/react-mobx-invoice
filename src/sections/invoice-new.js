@@ -27,7 +27,7 @@ class NewInvoice extends React.Component {
   }
 
   updateInProgress = (e) => {
-    store.invoice.inProgress[e.target.id] = e.target.value;
+    store.invoice.updateInProgress({ [e.target.id]: e.target.value });
   }
 
   render = () => (
