@@ -46,9 +46,7 @@ class InvoiceForm extends React.Component {
         <ControlLabel>Due Date</ControlLabel>
         <DatePicker
           value={this.invoice.dueDate}
-          onChange={(value) => {
-            this.invoice.dueDate = value;
-          }}
+          onChange={this.props.updateDueDate}
         />
       </FormGroup>
 
@@ -111,6 +109,7 @@ InvoiceForm.propTypes = {
   addItem: React.PropTypes.func.isRequired,
   invoice: React.PropTypes.object.isRequired,
   update: React.PropTypes.func.isRequired,
+  updateDueDate: React.PropTypes.func.isRequired,
 };
 
 export default InvoiceForm;

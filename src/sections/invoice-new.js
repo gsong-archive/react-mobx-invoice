@@ -18,14 +18,18 @@ class NewInvoice extends React.Component {
     this.invoice = store.inProgressInvoice.invoice;
   }
 
-  createInvoice = (invoice) => () => {
+  @action createInvoice = (invoice) => () => {
     const newInvoice = store.invoice.add(invoice);
     this.props.router.push(`/invoice/${newInvoice.id}`);
     store.inProgressInvoice.reset();
   }
 
-  update = (e) => {
+  @action update = (e) => {
     store.inProgressInvoice.update({ [e.target.id]: e.target.value });
+  }
+
+  @action updateDueDate = (value) => {
+    store.inProgressInvoice.update({ dueDate: value });
   }
 
   render = () => (
@@ -34,6 +38,7 @@ class NewInvoice extends React.Component {
         invoice={this.invoice}
         addItem={store.inProgressInvoice.addItem}
         update={this.update}
+        updateDueDate={this.updateDueDate}
       />
 
       <section>
