@@ -30,6 +30,21 @@ class NewInvoice extends React.Component {
     store.inProgressInvoice.update({ [e.target.id]: e.target.value });
   }
 
+  addItem = (e) => {
+    e.preventDefault();
+    const descriptionElem = document.querySelector('#itemDescription');
+    const unitCostElem = document.querySelector('#unitCost');
+    const quantityElem = document.querySelector('#quantity');
+    const description = descriptionElem.value;
+    const unitCost = Number(unitCostElem.value || 0);
+    const quantity = Number(quantityElem.value || 0);
+    store.inProgressInvoice.addItem({ description, unitCost, quantity });
+    descriptionElem.value = '';
+    unitCostElem.value = '';
+    quantityElem.value = '';
+    descriptionElem.focus();
+  }
+
   render = () => (
     <div>
       <section>
@@ -73,7 +88,7 @@ class NewInvoice extends React.Component {
           />
         </FormGroup>
 
-        <Form inline>
+        <Form inline onSubmit={this.addItem}>
           <FormGroup controlId="itemDescription">
             <ControlLabel>Item</ControlLabel>
             {' '}
@@ -83,13 +98,21 @@ class NewInvoice extends React.Component {
           <FormGroup controlId="unitCost">
             <ControlLabel>Unit Cost</ControlLabel>
             {' '}
-            <FormControl type="number" placeholder="Rate or unit cost" />
+            <FormControl
+              type="number"
+              step="0.01"
+              placeholder="Rate or unit cost"
+            />
           </FormGroup>
           {' '}
           <FormGroup controlId="quantity">
             <ControlLabel>Quantity</ControlLabel>
             {' '}
-            <FormControl type="number" placeholder="Hours or quantity" />
+            <FormControl
+              type="number"
+              step="0.01"
+              placeholder="Hours or quantity"
+            />
           </FormGroup>
           {' '}
           <Button type="submit" bsStyle="success">

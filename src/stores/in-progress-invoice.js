@@ -3,11 +3,15 @@ import { action, observable } from 'mobx';
 import { InvoiceDetail } from './invoice';
 
 
-class InProgressInvoice extends InvoiceDetail {
+class InProgressInvoice {
   @observable invoice = new InvoiceDetail({});
 
   @action update(newInfo) {
     Object.assign(this.invoice, newInfo);
+  }
+
+  @action addItem(item) {
+    this.invoice.items.push(item);
   }
 
   @action reset = () => {
