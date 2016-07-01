@@ -10,8 +10,12 @@ const InvoiceDisplay = ({ invoice }) => (
     <dd>{invoice.number || 'Not Assigned'}</dd>
     <dt>Due Date</dt>
     <dd>{invoice.dueDate}</dd>
+    <dt>Status</dt>
+    <dd>{invoice.status}</dd>
     <dt>Description</dt>
     <dd>{invoice.description}</dd>
+    <dt>Notes</dt>
+    <dd>{invoice.notes}</dd>
   </dl>
 );
 
