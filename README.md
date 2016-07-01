@@ -18,7 +18,7 @@ Your backend can be anything, and does not have to work. If you would like to us
 
  - [x] Add a due date to an invoice
  - [ ] View late invoices, or even better, alert when an invoice is late
- - [ ] Polish and UX
+ - [x] Polish and UX
  - [x] Highly reusable components
  - [ ] Tests
 

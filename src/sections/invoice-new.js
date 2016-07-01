@@ -20,6 +20,10 @@ class NewInvoice extends React.Component {
     this.invoice = store.inProgressInvoice.invoice;
   }
 
+  componentDidMount() {
+    document.querySelector('#client').focus();
+  }
+
   createInvoice = (invoice) => () => {
     const newInvoice = store.invoice.add(invoice);
     this.props.router.push(`/invoice/${newInvoice.id}`);
