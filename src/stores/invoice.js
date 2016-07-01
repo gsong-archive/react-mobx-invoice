@@ -16,6 +16,10 @@ class InvoiceDetail {
     Object.assign(this, invoice);
   }
 
+  @computed get displayDueDate() {
+    return moment(this.dueDate).local().format('MM/DD/YYYY');
+  }
+
   @computed get total() {
     return this.items
       .reduce((acc, curr) => acc + curr.unitCost * curr.quantity, 0)
@@ -39,11 +43,13 @@ class Invoice {
     return newInvoice;
   }
 
+  find = (id) => new InvoiceDetail(apiInvoice.find(id))
+
+
   @action updateInProgress(update) {
     Object.assign(this.inProgress, update);
   }
 
-  find = (id) => new InvoiceDetail(apiInvoice.find(id))
 
   @action resetInProgress = () => {
     this.inProgress = new InvoiceDetail({});

@@ -27,7 +27,7 @@ const InvoiceListDisplay = ({ list }) => (
           <td>
             <Link to={`/invoice/${invoice.id}`}>{invoice.description}</Link>
           </td>
-          <td>{invoice.dueDate}</td>
+          <td>{invoice.displayDueDate}</td>
           <td>{invoice.total}</td>
           <td>{invoice.status}</td>
         </tr>

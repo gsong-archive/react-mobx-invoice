@@ -1,5 +1,4 @@
 import React from 'react';
-import moment from 'moment';
 import { observer } from 'mobx-react';
 
 import { Panel } from 'react-bootstrap';
@@ -18,7 +17,7 @@ const InvoiceDisplay = ({ invoice }) => {
       >
         <dl>
           <dt>Due Date</dt>
-          <dd>{moment(invoice.dueDate).local().format('MM/DD/YYYY')}</dd>
+          <dd>{invoice.displayDueDate}</dd>
           <dt>Status</dt>
           <dd>{invoice.status}</dd>
           <dt>Description</dt>
