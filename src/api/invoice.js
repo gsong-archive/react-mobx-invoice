@@ -10,7 +10,7 @@ const list = [
     number: invoiceNumber,
     client: 'Acme Co.',
     email: 'acme@acme.co',
-    dueDate: '2016-06-27',
+    dueDate: '2016-07-01T19:00:00.000Z',
     description: 'Super duper website development',
     notes: 'Hi I’m a note!',
     status: 'draft',

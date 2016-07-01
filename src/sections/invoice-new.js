@@ -1,7 +1,7 @@
 import React from 'react';
-import { routerShape, withRouter } from 'react-router';
 import { action } from 'mobx';
 import { observer } from 'mobx-react';
+import { routerShape, withRouter } from 'react-router';
 
 import DatePicker from 'react-bootstrap-date-picker';
 import {
@@ -46,8 +46,9 @@ class NewInvoice extends React.Component {
         <FormGroup controlId="dueDate">
           <ControlLabel>Due Date</ControlLabel>
           <DatePicker
+            value={this.invoice.dueDate}
             onChange={(value) => {
-              this.invoice.dueDate = value.slice(0, 10);
+              this.invoice.dueDate = value;
             }}
           />
         </FormGroup>
@@ -57,7 +58,17 @@ class NewInvoice extends React.Component {
           <FormControl
             type="text"
             placeholder="Short Description"
-            defaultValue={this.invoice.client}
+            defaultValue={this.invoice.description}
+            onChange={this.updateInProgress}
+          />
+        </FormGroup>
+
+        <FormGroup controlId="notes">
+          <ControlLabel>Notes</ControlLabel>
+          <FormControl
+            componentClass="textarea"
+            placeholder="Notes"
+            defaultValue={this.invoice.notes}
             onChange={this.updateInProgress}
           />
         </FormGroup>

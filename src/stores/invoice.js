@@ -1,3 +1,4 @@
+import moment from 'moment';
 import { action, computed, observable } from 'mobx';
 
 import * as apiInvoice from '../api/invoice';
@@ -5,7 +6,7 @@ import * as apiInvoice from '../api/invoice';
 
 class InvoiceDetail {
   @observable client = '';
-  @observable dueDate = '';
+  @observable dueDate = moment().toISOString();
   @observable description = '';
   @observable notes = '';
   @observable status = 'draft';

@@ -2151,6 +2151,11 @@
       "from": "mobx-react-devtools@>=4.2.0 <5.0.0",
       "resolved": "https://registry.npmjs.org/mobx-react-devtools/-/mobx-react-devtools-4.2.0.tgz"
     },
+    "moment": {
+      "version": "2.13.0",
+      "from": "moment@latest",
+      "resolved": "https://registry.npmjs.org/moment/-/moment-2.13.0.tgz"
+    },
     "ms": {
       "version": "0.7.1",
       "from": "ms@0.7.1",
