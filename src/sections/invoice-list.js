@@ -3,7 +3,7 @@ import { Link, routerShape, withRouter } from 'react-router';
 import { action } from 'mobx';
 import { observer } from 'mobx-react';
 
-import { Table } from 'react-bootstrap';
+import { Button, Table } from 'react-bootstrap';
 
 import store from '../stores';
 
@@ -14,8 +14,16 @@ class InvoiceList extends React.Component {
     store.viewState.title = 'Invoice List';
   }
 
+  showCreateInvoice = () => {
+    this.props.router.push('/invoice/new');
+  }
+
   render = () => (
     <section>
+      <Button bsStyle="primary" onClick={this.showCreateInvoice}>
+        <i className="fa fa-plus fa-fw fa-lg" />
+        New Invoice
+      </Button>
       <Table>
         <thead displaySelectAll={false}>
           <tr>
@@ -33,7 +41,7 @@ class InvoiceList extends React.Component {
               <td>
                 <Link to={`/invoice/${invoice.id}`}>{invoice.number}</Link>
               </td>
-              <td>{invoice.name}</td>
+              <td>{invoice.client}</td>
               <td>{invoice.description}</td>
               <td>{invoice.dueDate}</td>
               <td>{invoice.total}</td>
@@ -42,7 +50,6 @@ class InvoiceList extends React.Component {
           ))}
         </tbody>
       </Table>
-      <Link to="/invoice/new">Add invoice</Link>
     </section>
   )
 }

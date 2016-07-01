@@ -3,6 +3,7 @@ import { Link } from 'react-router';
 import { action } from 'mobx';
 import { observer } from 'mobx-react';
 
+import InvoiceDisplay from '../components/invoice-detail';
 import store from '../stores';
 
 
@@ -16,8 +17,7 @@ class InvoiceDetail extends React.Component {
   render = () => (
     <div>
       <section>
-        <p>name: {this.invoice.name}</p>
-        <p>id: {this.invoice.id}</p>
+        <InvoiceDisplay invoice={this.invoice} />
       </section>
       <Link to="/">See all invoices</Link>
     </div>

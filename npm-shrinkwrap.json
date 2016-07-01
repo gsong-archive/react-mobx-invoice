@@ -2454,6 +2454,11 @@
         }
       }
     },
+    "react-bootstrap-date-picker": {
+      "version": "3.1.0",
+      "from": "react-bootstrap-date-picker@latest",
+      "resolved": "https://registry.npmjs.org/react-bootstrap-date-picker/-/react-bootstrap-date-picker-3.1.0.tgz"
+    },
     "react-dom": {
       "version": "15.1.0",
       "from": "react-dom@>=15.1.0 <16.0.0",
