@@ -41,6 +41,10 @@ class Invoice {
   }
 
   find = (id) => new InvoiceDetail(apiInvoice.find(id))
+
+  @action resetInProgress = () => {
+    this.inProgress = new InvoiceDetail({});
+  }
 }
 
 export default new Invoice();

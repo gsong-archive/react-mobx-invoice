@@ -2,7 +2,7 @@ import React from 'react';
 import { observer } from 'mobx-react';
 
 
-const InvoiceDetail = ({ invoice }) => (
+const InvoiceDisplay = ({ invoice }) => (
   <dl>
     <dt>Client Name</dt>
     <dd>{invoice.client}</dd>
@@ -15,8 +15,8 @@ const InvoiceDetail = ({ invoice }) => (
   </dl>
 );
 
-InvoiceDetail.propTypes = {
+InvoiceDisplay.propTypes = {
   invoice: React.PropTypes.object.isRequired,
 };
 
-export default observer(InvoiceDetail);
+export default observer(InvoiceDisplay);

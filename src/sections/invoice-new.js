@@ -1,14 +1,15 @@
 import React from 'react';
-import { Link, routerShape, withRouter } from 'react-router';
+import { routerShape, withRouter } from 'react-router';
 import { action } from 'mobx';
 import { observer } from 'mobx-react';
 
-import {
-  Button, ControlLabel, FormControl, FormGroup,
-} from 'react-bootstrap';
 import DatePicker from 'react-bootstrap-date-picker';
+import {
+  Button, ButtonToolbar, ControlLabel, FormControl, FormGroup,
+} from 'react-bootstrap';
+import { LinkContainer } from 'react-router-bootstrap';
 
-import InvoiceDetail from '../components/invoice-detail';
+import InvoiceDisplay from '../components/invoice-display';
 import store from '../stores';
 
 
@@ -16,12 +17,13 @@ import store from '../stores';
 class NewInvoice extends React.Component {
   @action componentWillMount() {
     store.viewState.title = 'New Invoice';
+    this.invoice = store.invoice.inProgress;
   }
 
   createInvoice = (invoice) => () => {
     const newInvoice = store.invoice.add(invoice);
     this.props.router.push(`/invoice/${newInvoice.id}`);
-    store.invoice.inProgress = {};
+    store.invoice.resetInProgress();
   }
 
   updateInProgress = (e) => {
@@ -36,7 +38,7 @@ class NewInvoice extends React.Component {
           <FormControl
             type="text"
             placeholder="Client name"
-            defaultValue={store.invoice.inProgress.client}
+            defaultValue={this.invoice.client}
             onChange={this.updateInProgress}
           />
         </FormGroup>
@@ -45,7 +47,7 @@ class NewInvoice extends React.Component {
           <ControlLabel>Due Date</ControlLabel>
           <DatePicker
             onChange={(value) => {
-              store.invoice.inProgress.dueDate = value.slice(0, 10);
+              this.invoice.dueDate = value.slice(0, 10);
             }}
           />
         </FormGroup>
@@ -55,23 +57,27 @@ class NewInvoice extends React.Component {
           <FormControl
             type="text"
             placeholder="Short Description"
-            defaultValue={store.invoice.inProgress.client}
+            defaultValue={this.invoice.client}
             onChange={this.updateInProgress}
           />
         </FormGroup>
 
-        <Button
-          bsStyle="primary"
-          onClick={this.createInvoice(store.invoice.inProgress)}
-        >
-          Create invoice
-        </Button>
-        <Link to="/">Cancel</Link>
+        <ButtonToolbar>
+          <Button
+            bsStyle="primary"
+            onClick={this.createInvoice(this.invoice)}
+          >
+            Create invoice
+          </Button>
+          <LinkContainer to="/">
+            <Button bsStyle="link">Cancel</Button>
+          </LinkContainer>
+        </ButtonToolbar>
       </section>
 
       <section>
         <h2>Preview</h2>
-        <InvoiceDetail invoice={store.invoice.inProgress} />
+        <InvoiceDisplay invoice={this.invoice} />
       </section>
     </div>
   )

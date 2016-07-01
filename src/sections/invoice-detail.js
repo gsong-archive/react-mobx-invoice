@@ -3,7 +3,7 @@ import { Link } from 'react-router';
 import { action } from 'mobx';
 import { observer } from 'mobx-react';
 
-import InvoiceDisplay from '../components/invoice-detail';
+import InvoiceDisplay from '../components/invoice-display';
 import store from '../stores';
 
 
