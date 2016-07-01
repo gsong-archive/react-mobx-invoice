@@ -10,7 +10,7 @@ class InProgressInvoice {
     Object.assign(this.invoice, newInfo);
   }
 
-  @action addItem(item) {
+  @action addItem = (item) => {
     this.invoice.items.push(item);
   }
 

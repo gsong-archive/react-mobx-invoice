@@ -34,19 +34,21 @@ const InvoiceDisplay = ({ invoice }) => {
               <Table>
                 <thead>
                   <tr>
-                    <th>Item</th>
-                    <th>Rate/Unit Cost</th>
-                    <th>Hours/Quantity</th>
-                    <th>Total</th>
+                    <th style={{ width: '50%' }}>Item</th>
+                    <th style={{ textAlign: 'right' }}>Rate/Unit Cost</th>
+                    <th style={{ textAlign: 'right' }}>Hours/Quantity</th>
+                    <th style={{ textAlign: 'right' }}>Total</th>
                   </tr>
                 </thead>
 
                 <tfoot>
-                  <tr>
-                    <td colSpan="3" style={{ textAlign: 'right' }}>
+                  <tr style={{ textAlign: 'right' }}>
+                    <td colSpan="3">
                       Balance Due:
                     </td>
-                    <td>${invoice.total}</td>
+                    <td>
+                      ${invoice.total}
+                    </td>
                   </tr>
                 </tfoot>
 
@@ -54,9 +56,13 @@ const InvoiceDisplay = ({ invoice }) => {
                   {invoice.items.map((item, i) => (
                     <tr key={`${invoice.id}-${i}`}>
                       <td>{item.description}</td>
-                      <td>${item.unitCost.toFixed(2)}</td>
-                      <td>{item.quantity}</td>
-                      <td>${(item.unitCost * item.quantity).toFixed(2)}</td>
+                      <td style={{ textAlign: 'right' }}>
+                        ${item.unitCost.toFixed(2)}
+                      </td>
+                      <td style={{ textAlign: 'right' }}>{item.quantity}</td>
+                      <td style={{ textAlign: 'right' }}>
+                        ${(item.unitCost * item.quantity).toFixed(2)}
+                      </td>
                     </tr>
                   ))}
                 </tbody>
