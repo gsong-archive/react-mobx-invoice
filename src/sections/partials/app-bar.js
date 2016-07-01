@@ -6,6 +6,8 @@ import { PageHeader } from 'react-bootstrap';
 import store from '../../stores';
 
 
-export default observer(() => (
+const AppBar = () => (
   <PageHeader>{store.viewState.title}</PageHeader>
-));
+);
+
+export default observer(AppBar);

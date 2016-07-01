@@ -16,6 +16,14 @@ export class InvoiceDetail {
     Object.assign(this, invoice);
   }
 
+  @action update = (newInfo) => {
+    Object.assign(this, newInfo);
+  }
+
+  @action addItem = (item) => {
+    this.items.push(item);
+  }
+
   @computed get displayDueDate() {
     return moment(this.dueDate).local().format('MM/DD/YYYY');
   }

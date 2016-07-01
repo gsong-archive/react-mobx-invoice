@@ -1,6 +1,5 @@
 import React from 'react';
 import { routerShape, withRouter } from 'react-router';
-import { action } from 'mobx';
 import { observer } from 'mobx-react';
 
 import { Button } from 'react-bootstrap';
@@ -11,8 +10,8 @@ import store from '../stores';
 
 @observer
 class InvoiceList extends React.Component {
-  @action componentWillMount() {
-    store.viewState.title = 'Invoice List';
+  componentWillMount() {
+    store.viewState.setTitle('Invoice List');
   }
 
   showCreateInvoice = () => {

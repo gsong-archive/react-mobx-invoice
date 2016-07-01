@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router';
-import { action } from 'mobx';
 import { observer } from 'mobx-react';
 
 import InvoiceDisplay from '../components/invoice-display';
@@ -9,8 +8,8 @@ import store from '../stores';
 
 @observer
 class InvoiceDetail extends React.Component {
-  @action componentWillMount() {
-    store.viewState.title = 'Invoice Detail';
+  componentWillMount() {
+    store.viewState.setTitle('Invoice Detail');
     this.invoice = store.invoice.find(this.props.params.id);
   }
 

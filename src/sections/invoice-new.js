@@ -1,5 +1,4 @@
 import React from 'react';
-import { action } from 'mobx';
 import { observer } from 'mobx-react';
 import { routerShape, withRouter } from 'react-router';
 
@@ -13,30 +12,30 @@ import store from '../stores';
 
 @observer
 class NewInvoice extends React.Component {
-  @action componentWillMount() {
-    store.viewState.title = 'New Invoice';
+  componentWillMount() {
+    store.viewState.setTitle('New Invoice');
     this.invoice = store.inProgressInvoice.invoice;
   }
 
-  @action createInvoice = (invoice) => () => {
-    const newInvoice = store.invoice.add(invoice);
-    this.props.router.push(`/invoice/${newInvoice.id}`);
+  createInvoice = () => {
+    const invoice = store.invoice.add(this.invoice);
+    this.props.router.push(`/invoice/${invoice.id}`);
     store.inProgressInvoice.reset();
+  };
+
+  update = (e) => {
+    this.invoice.update({ [e.target.id]: e.target.value });
   }
 
-  @action update = (e) => {
-    store.inProgressInvoice.update({ [e.target.id]: e.target.value });
-  }
-
-  @action updateDueDate = (value) => {
-    store.inProgressInvoice.update({ dueDate: value });
+  updateDueDate = (value) => {
+    this.invoice.update({ dueDate: value });
   }
 
   render = () => (
     <div>
       <InvoiceForm
         invoice={this.invoice}
-        addItem={store.inProgressInvoice.addItem}
+        addItem={this.invoice.addItem}
         update={this.update}
         updateDueDate={this.updateDueDate}
       />
@@ -49,7 +48,7 @@ class NewInvoice extends React.Component {
       <ButtonToolbar>
         <Button
           bsStyle="primary"
-          onClick={this.createInvoice(this.invoice)}
+          onClick={this.createInvoice}
         >
           Create invoice
         </Button>
