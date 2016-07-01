@@ -1,10 +1,10 @@
 import React from 'react';
 import { Redirect, Route, Router, browserHistory } from 'react-router';
 
-import AppBar from './app-bar';
-import InvoiceDetail from '../sections/invoice-detail';
-import InvoiceList from '../sections/invoice-list';
-import NewInvoice from '../sections/invoice-new';
+import AppBar from './partials/app-bar';
+import InvoiceDetail from './invoice-detail';
+import InvoiceList from './invoice-list';
+import NewInvoice from './invoice-new';
 
 
 const Root = () => (
