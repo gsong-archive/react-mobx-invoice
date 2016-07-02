@@ -21,7 +21,7 @@ const InvoiceListDisplay = ({ list }) => (
       {list.map((invoice) => (
         <tr key={invoice.id}>
           <td>
-            <Link to={`/invoice/${invoice.id}`}>{invoice.number}</Link>
+            <Link to={`/invoice/${invoice.id}/edit`}>{invoice.number}</Link>
           </td>
           <td>{invoice.client}</td>
           <td>

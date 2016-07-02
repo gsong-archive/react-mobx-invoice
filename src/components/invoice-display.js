@@ -9,6 +9,7 @@ const InvoiceDisplay = ({ invoice }) => {
     invoice.number ? `Invoice #${invoice.number}` : 'New Invoice'
   );
 
+  // TODO: Refactor into smaller components
   return (
     <div>
       <Panel

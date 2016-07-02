@@ -4,7 +4,7 @@ import { v4 } from 'node-uuid';
 let invoiceNumber = 1;
 
 // status can be: draft, sent, partial, paid, overdue
-const list = [
+let list = [
   {
     id: v4(),
     number: invoiceNumber,
@@ -32,6 +32,7 @@ const list = [
 
 export const getList = () => list;
 
+
 export const find = (id) => list.filter((invoice) => invoice.id === id)[0];
 
 
@@ -43,6 +44,17 @@ export const create = (invoice) => {
   };
   list.push(newInvoice);
   return newInvoice;
+};
+
+
+export const update = (invoice) => {
+  const index = list.findIndex((el) => invoice.id === el.id);
+  list = [
+    ...list.slice(0, index),
+    invoice,
+    ...list.slice(index + 1),
+  ];
+  return invoice;
 };
 
 
