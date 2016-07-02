@@ -1,35 +1,11 @@
 import { v4 } from 'node-uuid';
 import moment from 'moment';
 
+import { list as listFixture } from './fixture';
+
 
 let invoiceNumber = 1;
-
-// status can be: draft, sent, partial, paid, overdue
-let list = [
-  {
-    id: v4(),
-    number: invoiceNumber,
-    client: 'Acme Co.',
-    email: 'acme@acme.co',
-    dueDate: '2016-07-01T19:00:00.000Z',
-    description: 'Super duper website development',
-    notes: 'Hi I’m a note!',
-    status: 'draft',
-    items: [
-      {
-        description: 'Development',
-        unitCost: 100.00,
-        quantity: 1.6,
-      },
-      {
-        description: 'SSL certificates',
-        unitCost: 15.95,
-        quantity: 2,
-      },
-    ],
-  },
-];
-
+let list = [...listFixture];
 
 export const STATUSES = {
   DRAFT: 'draft',
