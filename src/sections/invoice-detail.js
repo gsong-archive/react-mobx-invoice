@@ -2,6 +2,7 @@ import React from 'react';
 import { routerShape, withRouter } from 'react-router';
 import { observer } from 'mobx-react';
 
+import Alert from 'react-s-alert';
 import { Button, ButtonToolbar, Label } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 
@@ -33,6 +34,7 @@ class InvoiceDetail extends React.Component {
           {title}
         </span>
       );
+      Alert.error('Invoice overdue!', { timeout: 3000 });
     }
     store.viewState.setTitle(title);
   }
