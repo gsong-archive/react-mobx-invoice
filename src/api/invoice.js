@@ -1,4 +1,5 @@
 import { v4 } from 'node-uuid';
+import moment from 'moment';
 
 
 let invoiceNumber = 1;
@@ -30,13 +31,62 @@ let list = [
 ];
 
 
-export const getList = () => list;
+export const STATUSES = {
+  DRAFT: 'draft',
+  SENT: 'sent',
+  PAID: 'paid',
+  OVERDUE: 'overdue',
+};
 
 
-export const find = (id) => list.filter((invoice) => invoice.id === id)[0];
+function statusFor(invoice) {
+  switch (invoice.status) {
+    case STATUSES.SENT: {
+      const due = moment(invoice.dueDate);
+      if (due.isBefore(moment())) {
+        invoice.status = STATUSES.OVERDUE;
+      }
+      return invoice.status;
+    }
+
+    case STATUSES.OVERDUE: {
+      const due = moment(invoice.dueDate);
+      if (due.isSameOrAfter(moment())) {
+        invoice.status = STATUSES.SENT;
+      }
+      return invoice.status;
+    }
+
+    default:
+      return invoice.status;
+  }
+}
 
 
-export const create = (invoice) => {
+export function update(invoice) {
+  const index = list.findIndex((el) => invoice.id === el.id);
+
+  invoice.status = statusFor(invoice);
+  list = [
+    ...list.slice(0, index),
+    invoice,
+    ...list.slice(index + 1),
+  ];
+  return invoice;
+}
+
+
+export function getList() {
+  return list.map((invoice) => update(invoice));
+}
+
+
+export function find(id) {
+  return getList().filter((invoice) => invoice.id === id)[0];
+}
+
+
+export function create(invoice) {
   const newInvoice = {
     ...invoice,
     id: v4(),
@@ -44,30 +94,17 @@ export const create = (invoice) => {
   };
   list.push(newInvoice);
   return newInvoice;
-};
+}
 
 
-export const update = (invoice) => {
-  const index = list.findIndex((el) => invoice.id === el.id);
-  list = [
-    ...list.slice(0, index),
-    invoice,
-    ...list.slice(index + 1),
-  ];
-  return invoice;
-};
-
-
-export const email = (invoice) => {
+export function email(invoice) {
   // TODO: Actually send email
-  const newInvoice = invoice;
-  newInvoice.status = 'sent';
-  return update(newInvoice);
-};
+  invoice.status = 'sent';
+  return update(invoice);
+}
 
 
-export const markPaid = (invoice) => {
-  const newInvoice = invoice;
-  newInvoice.status = 'paid';
-  return update(newInvoice);
-};
+export function markPaid(invoice) {
+  invoice.status = 'paid';
+  return update(invoice);
+}

@@ -2,13 +2,13 @@ import React from 'react';
 import { routerShape, withRouter } from 'react-router';
 import { observer } from 'mobx-react';
 
-import { Button, ButtonToolbar } from 'react-bootstrap';
+import { Button, ButtonToolbar, Label } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 
 import * as utils from './utils';
 import InvoiceDisplay from '../components/invoice-display';
 import store from '../stores';
-import { STATUSES } from '../stores/invoice';
+import { STATUSES } from '../api/invoice';
 
 
 @observer
@@ -19,11 +19,22 @@ class InvoiceDetail extends React.Component {
   }
 
   componentWillMount() {
-    store.viewState.setTitle('Invoice Detail');
     this.invoice = store.invoice.find(this.props.params.id);
     if (this.invoice.status === STATUSES.DRAFT) {
       this.props.router.push(`/invoice/${this.invoice.id}/edit`);
     }
+
+    let title = 'Invoice Detail';
+    if (this.invoice.status === STATUSES.OVERDUE) {
+      title = (
+        <span>
+          <Label bsStyle="danger">OVERDUE</Label>
+          {' '}
+          {title}
+        </span>
+      );
+    }
+    store.viewState.setTitle(title);
   }
 
   get payButton() {

@@ -3,6 +3,8 @@ import { action, computed, observable } from 'mobx';
 
 import * as apiInvoice from '../api/invoice';
 
+const STATUSES = apiInvoice.STATUSES;
+
 
 class InvoiceNotFound {
   name='InvoiceNotFound'
@@ -12,14 +14,6 @@ class InvoiceNotFound {
     this.message = `Invoice ${invoice.number} not found`;
   }
 }
-
-
-export const STATUSES = {
-  DRAFT: 'draft',
-  SENT: 'sent',
-  PAID: 'paid',
-  OVERDUE: 'overdue',
-};
 
 
 export class InvoiceDetail {
@@ -86,10 +80,9 @@ class Invoice {
   }
 
   @action send = (invoice) => {
-    const newInvoice = invoice;
-    newInvoice.status = STATUSES.SENT;
-    apiInvoice.email(newInvoice);
-    return this.update(newInvoice);
+    invoice.status = STATUSES.SENT;
+    apiInvoice.email(invoice);
+    return this.update(invoice);
   }
 
   @action markPaid = (invoice) => {

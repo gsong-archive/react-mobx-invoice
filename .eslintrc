@@ -12,6 +12,7 @@
   "rules": {
     "quotes": [2, "single"],
     "strict": [2, "never"],
+    "no-param-reassign": ["error", { "props": false }],
     "react/jsx-uses-react": 2,
     "react/jsx-uses-vars": 2,
     "react/jsx-no-undef" : 2,

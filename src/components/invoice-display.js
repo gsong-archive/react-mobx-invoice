@@ -3,6 +3,8 @@ import { observer } from 'mobx-react';
 
 import { Col, Grid, Panel, Row, Table } from 'react-bootstrap';
 
+import InvoiceStatusLabel from './invoice-status-label';
+
 
 const InvoiceDisplay = ({ invoice }) => {
   const invoiceNumber = (
@@ -10,10 +12,17 @@ const InvoiceDisplay = ({ invoice }) => {
   );
 
   // TODO: Refactor into smaller components
+  // TODO: Need to be able to delete each invoice item
   return (
     <div>
       <Panel
-        header={`${invoice.status} ${invoice.client} ${invoiceNumber}`}
+        header={
+          <span>
+            <InvoiceStatusLabel invoice={invoice} />
+            {' '}
+            {invoice.client} {invoiceNumber}
+          </span>
+        }
         bsStyle="primary"
       >
         <Grid>

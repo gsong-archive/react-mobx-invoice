@@ -10,7 +10,7 @@ import * as utils from './utils';
 import InvoiceDisplay from '../components/invoice-display';
 import InvoiceForm from '../components/invoice-form';
 import store from '../stores';
-import { STATUSES } from '../stores/invoice';
+import { STATUSES } from '../api/invoice';
 
 
 @observer

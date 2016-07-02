@@ -4,6 +4,9 @@ import { observer } from 'mobx-react';
 
 import { Table } from 'react-bootstrap';
 
+import InvoiceStatusLabel from './invoice-status-label';
+import { STATUSES } from '../api/invoice';
+
 
 const InvoiceListDisplay = ({ list }) => (
   <Table>
@@ -19,7 +22,10 @@ const InvoiceListDisplay = ({ list }) => (
     </thead>
     <tbody displayRowCheckbox={false}>
       {list.map((invoice) => (
-        <tr key={invoice.id}>
+        <tr
+          key={invoice.id}
+          className={invoice.status === STATUSES.OVERDUE ? 'danger' : ''}
+        >
           <td>
             <Link to={`/invoice/${invoice.id}`}>{invoice.number}</Link>
           </td>
@@ -29,7 +35,7 @@ const InvoiceListDisplay = ({ list }) => (
           </td>
           <td>{invoice.displayDueDate}</td>
           <td>{invoice.total}</td>
-          <td>{invoice.status}</td>
+          <td><InvoiceStatusLabel invoice={invoice} /></td>
         </tr>
       ))}
     </tbody>
