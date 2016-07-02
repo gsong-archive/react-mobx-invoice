@@ -9,5 +9,4 @@ class ViewState {
   }
 }
 
-
 export default new ViewState();

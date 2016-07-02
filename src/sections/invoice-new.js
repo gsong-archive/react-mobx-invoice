@@ -12,56 +12,61 @@ import store from '../stores';
 
 @observer
 class NewInvoice extends React.Component {
+  static propTypes = {
+    router: routerShape,
+  }
+
   componentWillMount() {
     store.viewState.setTitle('New Invoice');
-    this.invoice = store.inProgressInvoice.invoice;
   }
 
   createInvoice = () => {
-    const invoice = store.invoice.add(this.invoice);
+    const invoice = store.invoice.add(store.inProgressInvoice.invoice);
     this.props.router.push(`/invoice/${invoice.id}`);
     store.inProgressInvoice.reset();
   };
 
   update = (e) => {
-    this.invoice.update({ [e.target.id]: e.target.value });
+    store.inProgressInvoice.invoice.update({ [e.target.id]: e.target.value });
   }
 
   updateDueDate = (value) => {
-    this.invoice.update({ dueDate: value });
+    store.inProgressInvoice.invoice.update({ dueDate: value });
   }
 
-  render = () => (
-    <div>
-      <InvoiceForm
-        invoice={this.invoice}
-        addItem={this.invoice.addItem}
-        update={this.update}
-        updateDueDate={this.updateDueDate}
-      />
+  reset = () => {
+    store.inProgressInvoice.reset();
+  }
 
-      <section>
-        <h2>Preview</h2>
-        <InvoiceDisplay invoice={this.invoice} />
-      </section>
+  render = () => {
+    const invoice = store.inProgressInvoice.invoice;
 
-      <ButtonToolbar>
-        <Button
-          bsStyle="primary"
-          onClick={this.createInvoice}
-        >
-          Create invoice
-        </Button>
-        <LinkContainer to="/">
-          <Button bsStyle="link">Cancel</Button>
-        </LinkContainer>
-      </ButtonToolbar>
-    </div>
-  )
+    return (
+      <div>
+        <InvoiceForm
+          invoice={invoice}
+          addItem={invoice.addItem}
+          update={this.update}
+          updateDueDate={this.updateDueDate}
+        />
+
+        <section>
+          <h2>Preview</h2>
+          <InvoiceDisplay invoice={invoice} />
+        </section>
+
+        <ButtonToolbar>
+          <Button bsStyle="primary" onClick={this.createInvoice}>
+            Create invoice
+          </Button>
+          <LinkContainer to="/">
+            <Button bsStyle="link">Return to Invoices</Button>
+          </LinkContainer>
+          <Button bsStyle="link" onClick={this.reset}>Start Over</Button>
+        </ButtonToolbar>
+      </div>
+    );
+  };
 }
-
-NewInvoice.propTypes = {
-  router: routerShape,
-};
 
 export default withRouter(NewInvoice);

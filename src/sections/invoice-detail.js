@@ -8,6 +8,10 @@ import store from '../stores';
 
 @observer
 class InvoiceDetail extends React.Component {
+  static propTypes = {
+    params: React.PropTypes.object.isRequired,
+  }
+
   componentWillMount() {
     store.viewState.setTitle('Invoice Detail');
     this.invoice = store.invoice.find(this.props.params.id);
@@ -22,9 +26,5 @@ class InvoiceDetail extends React.Component {
     </div>
   )
 }
-
-InvoiceDetail.propTypes = {
-  params: React.PropTypes.object.isRequired,
-};
 
 export default InvoiceDetail;

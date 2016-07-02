@@ -10,6 +10,10 @@ import store from '../stores';
 
 @observer
 class InvoiceList extends React.Component {
+  static propTypes = {
+    router: routerShape,
+  }
+
   componentWillMount() {
     store.viewState.setTitle('Invoice List');
   }
@@ -28,9 +32,5 @@ class InvoiceList extends React.Component {
     </section>
   )
 }
-
-InvoiceList.propTypes = {
-  router: routerShape,
-};
 
 export default withRouter(InvoiceList);
