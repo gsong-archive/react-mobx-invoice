@@ -8,6 +8,7 @@ import { LinkContainer } from 'react-router-bootstrap';
 import InvoiceDisplay from '../components/invoice-display';
 import InvoiceForm from '../components/invoice-form';
 import store from '../stores';
+import { STATUSES } from '../stores/invoice';
 
 
 @observer
@@ -20,6 +21,9 @@ class EditInvoice extends React.Component {
   componentWillMount() {
     store.viewState.setTitle('Edit Invoice');
     this.invoice = store.invoice.find(this.props.params.id);
+    if (this.invoice.status !== STATUSES.DRAFT) {
+      this.props.router.push(`/invoice/${this.invoice.id}`);
+    }
   }
 
   update = (e) => {
@@ -32,6 +36,11 @@ class EditInvoice extends React.Component {
 
   updateInvoice = () => {
     this.invoice = store.invoice.update(this.invoice);
+    this.props.router.push(`/invoice/${this.invoice.id}`);
+  }
+
+  sendInvoice = () => {
+    store.invoice.send(this.invoice);
     this.props.router.push(`/invoice/${this.invoice.id}`);
   }
 
@@ -55,6 +64,9 @@ class EditInvoice extends React.Component {
         <ButtonToolbar>
           <Button bsStyle="primary" onClick={this.updateInvoice}>
             Update invoice
+          </Button>
+          <Button bsStyle="success" onClick={this.sendInvoice}>
+            Send invoice
           </Button>
           <LinkContainer to="/">
             <Button bsStyle="link">Cancel</Button>

@@ -58,8 +58,9 @@ export const update = (invoice) => {
 };
 
 
-export const email = (id) => {
-  const invoice = find(id);
-  invoice.status = 'sent';
-  // Send email
+export const email = (invoice) => {
+  // TODO: Actually send email
+  const newInvoice = invoice;
+  newInvoice.status = 'sent';
+  return update(newInvoice);
 };

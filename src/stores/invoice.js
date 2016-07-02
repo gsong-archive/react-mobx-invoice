@@ -14,12 +14,20 @@ class InvoiceNotFound {
 }
 
 
+export const STATUSES = {
+  DRAFT: 'draft',
+  SENT: 'sent',
+  PAID: 'paid',
+  OVERDUE: 'overdue',
+};
+
+
 export class InvoiceDetail {
   @observable client = '';
   @observable dueDate = moment().toISOString();
   @observable description = '';
   @observable notes = '';
-  @observable status = 'draft';
+  @observable status = STATUSES.DRAFT;
   @observable items = [];
 
   constructor(invoice) {
@@ -73,6 +81,13 @@ class Invoice {
       ...this.list.slice(index + 1),
     ];
     return invoice;
+  }
+
+  @action send = (invoice) => {
+    const newInvoice = invoice;
+    newInvoice.status = STATUSES.SENT;
+    apiInvoice.email(newInvoice);
+    return this.update(newInvoice);
   }
 
   find = (id) => new InvoiceDetail(apiInvoice.find(id))
