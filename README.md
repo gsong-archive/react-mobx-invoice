@@ -9,8 +9,8 @@ We would like you to create an invoicing app. The features it should include:
  - [x] Create a new invoice
  - [x] Add line items to the invoice. Line items may include hours of work at a certain rate, work-related expenses, materials, labor, etc.
  - [x] Add notes to the invoice, including possibly how to pay it, where to send checks, etc.
- - [ ] Send the invoice via email (does not have to actually send emails, but if it does, great!)
- - [ ] View invoices including status (paid, outstanding, late, etc.)
+ - [x] Send the invoice via email (does not have to actually send emails, but if it does, great!)
+ - [x] View invoices including status (paid, outstanding, late, etc.)
 
 Your backend can be anything, and does not have to work. If you would like to use a mocked-out interface, that is fine (even static data in code is ok).
 

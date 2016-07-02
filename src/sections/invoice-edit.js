@@ -5,6 +5,7 @@ import { routerShape, withRouter } from 'react-router';
 import { Button, ButtonToolbar } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 
+import * as utils from './utils';
 import InvoiceDisplay from '../components/invoice-display';
 import InvoiceForm from '../components/invoice-form';
 import store from '../stores';
@@ -67,6 +68,12 @@ class EditInvoice extends React.Component {
           </Button>
           <Button bsStyle="success" onClick={this.sendInvoice}>
             Send invoice
+          </Button>
+          <Button
+            bsStyle="warning"
+            onClick={() => utils.markInvoicePaid(this.invoice)}
+          >
+            Mark invoice as paid
           </Button>
           <LinkContainer to="/">
             <Button bsStyle="link">Cancel</Button>

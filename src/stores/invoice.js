@@ -91,6 +91,11 @@ class Invoice {
     return this.update(newInvoice);
   }
 
+  @action markPaid = (invoice) => {
+    const newInvoice = apiInvoice.markPaid(invoice);
+    return this.update(newInvoice);
+  }
+
   find = (id) => new InvoiceDetail(apiInvoice.find(id))
 }
 

@@ -1,7 +1,11 @@
 import React from 'react';
-import { Link, routerShape, withRouter } from 'react-router';
+import { routerShape, withRouter } from 'react-router';
 import { observer } from 'mobx-react';
 
+import { Button, ButtonToolbar } from 'react-bootstrap';
+import { LinkContainer } from 'react-router-bootstrap';
+
+import * as utils from './utils';
 import InvoiceDisplay from '../components/invoice-display';
 import store from '../stores';
 import { STATUSES } from '../stores/invoice';
@@ -22,12 +26,32 @@ class InvoiceDetail extends React.Component {
     }
   }
 
+  get payButton() {
+    if (this.invoice.status === STATUSES.PAID) {
+      return '';
+    }
+    return (
+      <Button
+        bsStyle="warning"
+        onClick={() => utils.markInvoicePaid(this.invoice)}
+      >
+        Mark invoice as paid
+      </Button>
+    );
+  }
+
   render = () => (
     <div>
       <section>
         <InvoiceDisplay invoice={this.invoice} />
       </section>
-      <Link to="/">See all invoices</Link>
+
+      <ButtonToolbar>
+        {this.payButton}
+        <LinkContainer to="/">
+          <Button bsStyle="link">Return to Invoices</Button>
+        </LinkContainer>
+      </ButtonToolbar>
     </div>
   )
 }

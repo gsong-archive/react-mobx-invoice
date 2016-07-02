@@ -76,7 +76,7 @@ export default class InvoiceItemForm extends React.Component {
         />
       </FormGroup>
       {' '}
-      <Button type="submit" bsStyle="success">
+      <Button type="submit" bsStyle="info">
         Add Item
       </Button>
     </Form>

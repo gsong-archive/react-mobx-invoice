@@ -64,3 +64,10 @@ export const email = (invoice) => {
   newInvoice.status = 'sent';
   return update(newInvoice);
 };
+
+
+export const markPaid = (invoice) => {
+  const newInvoice = invoice;
+  newInvoice.status = 'paid';
+  return update(newInvoice);
+};
