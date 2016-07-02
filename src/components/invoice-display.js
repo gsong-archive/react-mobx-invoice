@@ -13,7 +13,7 @@ const InvoiceDisplay = ({ invoice }) => {
   return (
     <div>
       <Panel
-        header={`${invoice.client} ${invoiceNumber}`}
+        header={`${invoice.status} ${invoice.client} ${invoiceNumber}`}
         bsStyle="primary"
       >
         <Grid>
@@ -22,8 +22,8 @@ const InvoiceDisplay = ({ invoice }) => {
               <dl>
                 <dt>Due Date</dt>
                 <dd>{invoice.displayDueDate}</dd>
-                <dt>Status</dt>
-                <dd>{invoice.status}</dd>
+                <dt>Email</dt>
+                <dd>{invoice.email}</dd>
                 <dt>Description</dt>
                 <dd>{invoice.description}</dd>
                 <dt>Notes</dt>

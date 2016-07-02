@@ -1,8 +1,10 @@
 import React from 'react';
 
 import DatePicker from 'react-bootstrap-date-picker';
-import { ControlLabel, FormControl, FormGroup } from 'react-bootstrap';
+import { Form } from 'react-bootstrap';
 
+import HorizontalFormElement from './horizontal-form-element';
+import HorizontalFormGroup from './horizontal-form-group';
 import InvoiceItemForm from './invoice-item-form';
 
 
@@ -28,43 +30,56 @@ export default class InvoiceForm extends React.Component {
 
     return (
       <section>
-        <FormGroup controlId="client">
-          <ControlLabel>Client</ControlLabel>
-          <FormControl
-            type="text"
+        <Form horizontal>
+          <HorizontalFormElement
+            key="client"
+            id="client"
+            label="Client"
             placeholder="Client name"
             value={invoice.client}
             onChange={this.update}
           />
-        </FormGroup>
 
-        <FormGroup controlId="dueDate">
-          <ControlLabel>Due Date</ControlLabel>
-          <DatePicker
-            value={invoice.dueDate}
-            onChange={updateDueDate}
+          <HorizontalFormElement
+            key="email"
+            id="email"
+            label="Email"
+            type="email"
+            placeholder="Client email"
+            value={invoice.email}
+            onChange={this.update}
           />
-        </FormGroup>
 
-        <FormGroup controlId="description">
-          <ControlLabel>Description</ControlLabel>
-          <FormControl
-            type="text"
-            placeholder="Short Description"
+          <HorizontalFormGroup
+            id="dueDate"
+            label="Due Date"
+            formControl={
+              <DatePicker
+                value={invoice.dueDate}
+                onChange={updateDueDate}
+              />
+            }
+          />
+
+          <HorizontalFormElement
+            id="description"
+            label="Description"
+            placeholder="Short description"
             value={invoice.description}
             onChange={this.update}
           />
-        </FormGroup>
 
-        <FormGroup controlId="notes">
-          <ControlLabel>Notes</ControlLabel>
-          <FormControl
-            componentClass="textarea"
+          <HorizontalFormElement
+            id="notes"
+            label="Notes"
             placeholder="Notes"
+            componentClass="textarea"
             value={invoice.notes}
             onChange={this.update}
           />
-        </FormGroup>
+        </Form>
+
+        <hr />
 
         <InvoiceItemForm addItem={addItem} />
       </section>

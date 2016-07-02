@@ -59,10 +59,10 @@ class NewInvoice extends React.Component {
           <Button bsStyle="primary" onClick={this.createInvoice}>
             Create invoice
           </Button>
+          <Button bsStyle="danger" onClick={this.reset}>Start Over</Button>
           <LinkContainer to="/">
             <Button bsStyle="link">Return to Invoices</Button>
           </LinkContainer>
-          <Button bsStyle="link" onClick={this.reset}>Start Over</Button>
         </ButtonToolbar>
       </div>
     );

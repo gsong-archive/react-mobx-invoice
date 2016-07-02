@@ -24,6 +24,7 @@ export const STATUSES = {
 
 export class InvoiceDetail {
   @observable client = '';
+  @observable email = '';
   @observable dueDate = moment().toISOString();
   @observable description = '';
   @observable notes = '';
