@@ -1,4 +1,5 @@
 import React from 'react';
+import { observer } from 'mobx-react';
 
 import {
   Button, ControlLabel, Form, FormControl, FormGroup,
@@ -12,6 +13,7 @@ const defaultState = {
 };
 
 
+@observer
 export default class InvoiceItemForm extends React.Component {
   static propTypes = {
     addItem: React.PropTypes.func.isRequired,

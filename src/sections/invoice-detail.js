@@ -24,7 +24,14 @@ class InvoiceDetail extends React.Component {
     if (this.invoice.status === STATUSES.DRAFT) {
       this.props.router.push(`/invoice/${this.invoice.id}/edit`);
     }
+    this.setTitle();
+  }
 
+  componentWillUpdate() {
+    this.setTitle();
+  }
+
+  setTitle = () => {
     let title = 'Invoice Detail';
     if (this.invoice.status === STATUSES.OVERDUE) {
       title = (

@@ -1,4 +1,5 @@
 import React from 'react';
+import { observer } from 'mobx-react';
 
 import { FormControl } from 'react-bootstrap';
 
@@ -44,4 +45,4 @@ HorizontalFormElement.defaultProps = {
   inputCols: 10,
 };
 
-export default HorizontalFormElement;
+export default observer(HorizontalFormElement);

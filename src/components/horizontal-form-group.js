@@ -1,4 +1,5 @@
 import React from 'react';
+import { observer } from 'mobx-react';
 
 import { Col, ControlLabel, FormGroup } from 'react-bootstrap';
 
@@ -29,4 +30,4 @@ HorizontalFormGroup.defaultProps = {
   inputCols: 10,
 };
 
-export default HorizontalFormGroup;
+export default observer(HorizontalFormGroup);

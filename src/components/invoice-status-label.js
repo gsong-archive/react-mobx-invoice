@@ -1,4 +1,5 @@
 import React from 'react';
+import { observer } from 'mobx-react';
 
 import { Label } from 'react-bootstrap';
 
@@ -37,4 +38,4 @@ InvoiceStatusLabel.propTypes = {
   invoice: React.PropTypes.object.isRequired,
 };
 
-export default InvoiceStatusLabel;
+export default observer(InvoiceStatusLabel);

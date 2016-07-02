@@ -1,4 +1,5 @@
 import React from 'react';
+import { observer } from 'mobx-react';
 
 import DatePicker from 'react-bootstrap-date-picker';
 import { Form } from 'react-bootstrap';
@@ -8,6 +9,7 @@ import HorizontalFormGroup from './horizontal-form-group';
 import InvoiceItemForm from './invoice-item-form';
 
 
+@observer
 export default class InvoiceForm extends React.Component {
   static propTypes = {
     addItem: React.PropTypes.func.isRequired,
@@ -22,7 +24,6 @@ export default class InvoiceForm extends React.Component {
 
   update = (e) => {
     this.props.update(e);
-    this.forceUpdate();
   }
 
   render = () => {
