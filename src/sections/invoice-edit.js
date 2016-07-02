@@ -2,6 +2,7 @@ import React from 'react';
 import { observer } from 'mobx-react';
 import { routerShape, withRouter } from 'react-router';
 
+import Alert from 'react-s-alert';
 import { Button, ButtonToolbar } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 
@@ -38,11 +39,13 @@ class EditInvoice extends React.Component {
   updateInvoice = () => {
     this.invoice = store.invoice.update(this.invoice);
     this.props.router.push(`/invoice/${this.invoice.id}`);
+    Alert.success('Invoice updated.');
   }
 
   sendInvoice = () => {
     store.invoice.send(this.invoice);
     this.props.router.push(`/invoice/${this.invoice.id}`);
+    Alert.success('Invoice sent.');
   }
 
   render = () => {

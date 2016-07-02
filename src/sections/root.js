@@ -1,6 +1,10 @@
 import React from 'react';
 import { Redirect, Route, Router, browserHistory } from 'react-router';
 
+import 'react-s-alert/dist/s-alert-css-effects/slide.css';
+import 'react-s-alert/dist/s-alert-default.css';
+import Alert from 'react-s-alert';
+
 import AppBar from './partials/app-bar';
 import EditInvoice from './invoice-edit';
 import InvoiceDetail from './invoice-detail';
@@ -18,6 +22,8 @@ const Root = () => (
       <Route path="/invoice/:id/edit" component={EditInvoice} />
       <Route path="/invoice/:id" component={InvoiceDetail} />
     </Router>
+
+    <Alert stack={{ limit: 3 }} effect="slide" timeout={2000} />
   </div>
 );
 

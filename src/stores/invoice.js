@@ -73,6 +73,7 @@ class Invoice {
     const index = this.list.findIndex((el) => invoice.id === el.id);
 
     // TODO: Error checking here should be more sophisticated
+    // Such as refetching the list to see if things have changed
     if (index === -1) { throw new InvoiceNotFound(invoice); }
 
     apiInvoice.update(invoice);

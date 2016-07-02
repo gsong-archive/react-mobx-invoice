@@ -2,6 +2,7 @@ import React from 'react';
 import { observer } from 'mobx-react';
 import { routerShape, withRouter } from 'react-router';
 
+import Alert from 'react-s-alert';
 import { Button, ButtonToolbar } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 
@@ -24,6 +25,7 @@ class NewInvoice extends React.Component {
     const invoice = store.invoice.add(store.inProgressInvoice.invoice);
     this.props.router.push(`/invoice/${invoice.id}`);
     store.inProgressInvoice.reset();
+    Alert.success('Invoice created.');
   };
 
   update = (e) => {
