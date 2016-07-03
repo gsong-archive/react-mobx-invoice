@@ -18,11 +18,11 @@ const Root = () => (
   <div className="container">
     <AppBar />
     <Router history={browserHistory}>
-      <Redirect from="/" to="/invoice" />
-      <Route path="/invoice" component={InvoiceList} />
-      <Route path="/invoice/new" component={NewInvoice} />
-      <Route path="/invoice/:id/edit" component={EditInvoice} />
-      <Route path="/invoice/:id" component={InvoiceDetail} />
+      <Redirect from="/" to="invoice" />
+      <Route path="invoice" component={InvoiceList} />
+      <Route path="invoice/new" component={NewInvoice} />
+      <Route path="invoice/:id/edit" component={EditInvoice} />
+      <Route path="invoice/:id" component={InvoiceDetail} />
     </Router>
 
     <Alert stack={{ limit: 3 }} effect="slide" timeout={2000} />

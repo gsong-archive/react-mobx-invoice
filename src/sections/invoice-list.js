@@ -19,7 +19,7 @@ class InvoiceList extends React.Component {
   }
 
   showCreateInvoice = () => {
-    this.props.router.push('/invoice/new');
+    this.props.router.push('invoice/new');
   }
 
   // TODO: Also show total outstanding balance for all invoices
