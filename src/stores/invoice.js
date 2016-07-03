@@ -1,7 +1,8 @@
-import moment from 'moment';
-import { action, computed, observable } from 'mobx';
+import { action, observable } from 'mobx';
 
 import * as apiInvoice from '../api/invoice';
+import InvoiceDetail from './invoice-detail';
+
 
 const STATUSES = apiInvoice.STATUSES;
 
@@ -12,39 +13,6 @@ class InvoiceNotFound {
   constructor(invoice) {
     this.invoice = invoice;
     this.message = `Invoice ${invoice.number} not found`;
-  }
-}
-
-
-export class InvoiceDetail {
-  @observable client = '';
-  @observable email = '';
-  @observable dueDate = moment().toISOString();
-  @observable description = '';
-  @observable notes = '';
-  @observable status = STATUSES.DRAFT;
-  @observable items = [];
-
-  constructor(invoice) {
-    Object.assign(this, invoice);
-  }
-
-  @action update = (newInfo) => {
-    Object.assign(this, newInfo);
-  }
-
-  @action addItem = (item) => {
-    this.items.push(item);
-  }
-
-  @computed get displayDueDate() {
-    return moment(this.dueDate).local().format('MM/DD/YYYY');
-  }
-
-  @computed get total() {
-    return this.items
-      .reduce((acc, curr) => acc + curr.unitCost * curr.quantity, 0)
-      .toFixed(2);
   }
 }
 
