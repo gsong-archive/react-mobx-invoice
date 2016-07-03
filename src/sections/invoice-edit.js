@@ -24,7 +24,7 @@ class EditInvoice extends React.Component {
     store.viewState.setTitle('Edit Invoice');
     this.invoice = store.invoice.find(this.props.params.id);
     if (this.invoice.status !== STATUSES.DRAFT) {
-      this.props.router.push(`invoice/${this.invoice.id}`);
+      this.props.router.push(`/invoice/${this.invoice.id}`);
     }
   }
 
@@ -38,13 +38,13 @@ class EditInvoice extends React.Component {
 
   updateInvoice = () => {
     this.invoice = store.invoice.update(this.invoice);
-    this.props.router.push(`invoice/${this.invoice.id}`);
+    this.props.router.push(`/invoice/${this.invoice.id}`);
     Alert.success('Invoice updated.');
   }
 
   sendInvoice = () => {
     store.invoice.send(this.invoice);
-    this.props.router.push(`invoice/${this.invoice.id}`);
+    this.props.router.push(`/invoice/${this.invoice.id}`);
     Alert.success('Invoice sent.');
   }
 

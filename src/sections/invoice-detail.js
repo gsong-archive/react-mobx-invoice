@@ -22,7 +22,7 @@ class InvoiceDetail extends React.Component {
   componentWillMount() {
     this.invoice = store.invoice.find(this.props.params.id);
     if (this.invoice.status === STATUSES.DRAFT) {
-      this.props.router.push(`invoice/${this.invoice.id}/edit`);
+      this.props.router.push(`/invoice/${this.invoice.id}/edit`);
     }
     this.setTitle();
   }
