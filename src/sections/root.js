@@ -1,8 +1,6 @@
 import React from 'react';
 import { Redirect, Route, Router, browserHistory } from 'react-router';
 
-import 'react-s-alert/dist/s-alert-css-effects/slide.css';
-import 'react-s-alert/dist/s-alert-default.css';
 import Alert from 'react-s-alert';
 
 import AppBar from './partials/app-bar';
@@ -11,6 +9,10 @@ import InvoiceDetail from './invoice-detail';
 import InvoiceList from './invoice-list';
 import NewInvoice from './invoice-new';
 
+import 'bootstrap/dist/css/bootstrap.css';
+import 'font-awesome/css/font-awesome.css';
+import 'react-s-alert/dist/s-alert-css-effects/slide.css';
+import 'react-s-alert/dist/s-alert-default.css';
 
 const Root = () => (
   <div className="container">
