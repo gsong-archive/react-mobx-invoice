@@ -96,3 +96,5 @@ export const list = [
     ],
   },
 ];
+
+export const invoiceNumberFixture = invoiceNumber;

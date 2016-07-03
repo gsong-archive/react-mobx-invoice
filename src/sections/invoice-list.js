@@ -22,6 +22,7 @@ class InvoiceList extends React.Component {
     this.props.router.push('/invoice/new');
   }
 
+  // TODO: Also show total outstanding balance for all invoices
   render = () => (
     <section>
       <Button bsStyle="primary" onClick={this.showCreateInvoice}>

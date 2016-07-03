@@ -1,10 +1,10 @@
 import { v4 } from 'node-uuid';
 import moment from 'moment';
 
-import { list as listFixture } from './fixture';
+import { list as listFixture, invoiceNumberFixture } from './fixture';
 
 
-let invoiceNumber = 1;
+let invoiceNumber = invoiceNumberFixture;
 let list = [...listFixture];
 
 export const STATUSES = {
