@@ -9,7 +9,7 @@ RxJS.
 
 ## Let's Run It
 
-1.  Fork and clone this project.
+1.  Clone this project.
 2.  `npm install`
 3.  `npm start`
 4.  Visit <http://localhost:3333>
