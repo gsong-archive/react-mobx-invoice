@@ -29,7 +29,10 @@ class InvoiceList extends React.Component {
         <i className="fa fa-plus fa-fw fa-lg" />
         New Invoice
       </Button>
-      <InvoiceListDisplay list={store.invoice.list} />
+      <InvoiceListDisplay
+        list={store.invoice.list}
+        totalOutstanding={store.invoice.totalOutstanding}
+      />
     </section>
   )
 }

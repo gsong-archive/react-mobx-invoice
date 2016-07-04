@@ -1,4 +1,4 @@
-import { action, observable } from 'mobx';
+import { action, computed, observable } from 'mobx';
 
 import * as apiInvoice from '../api/invoice';
 import InvoiceDetail from './invoice-detail';
@@ -56,6 +56,13 @@ class Invoice {
   @action markPaid = (invoice) => {
     const newInvoice = apiInvoice.markPaid(invoice);
     return this.update(newInvoice);
+  }
+
+  @computed get totalOutstanding() {
+    return this.list
+      .filter((el) => [STATUSES.SENT, STATUSES.OVERDUE].indexOf(el.status) > -1)
+      .reduce((acc, el) => acc + Number(el.total), 0)
+      .toFixed(2);
   }
 
   find = (id) => new InvoiceDetail(apiInvoice.find(id))

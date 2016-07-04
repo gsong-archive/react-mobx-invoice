@@ -8,7 +8,7 @@ import InvoiceStatusLabel from './invoice-status-label';
 import { STATUSES } from '../api/invoice';
 
 
-const InvoiceListDisplay = ({ list }) => (
+const InvoiceListDisplay = ({ list, totalOutstanding }) => (
   <Table>
     <thead displaySelectAll={false}>
       <tr>
@@ -20,6 +20,16 @@ const InvoiceListDisplay = ({ list }) => (
         <th>Status</th>
       </tr>
     </thead>
+
+    <tfoot>
+      <tr>
+        <td colSpan="3" />
+        <td>Total outstanding:</td>
+        <td>{totalOutstanding}</td>
+        <td />
+      </tr>
+    </tfoot>
+
     <tbody displayRowCheckbox={false}>
       {list.map((invoice) => (
         <tr
@@ -44,6 +54,7 @@ const InvoiceListDisplay = ({ list }) => (
 
 InvoiceListDisplay.propTypes = {
   list: React.PropTypes.object.isRequired,
+  totalOutstanding: React.PropTypes.string.isRequired,
 };
 
 export default observer(InvoiceListDisplay);
