@@ -1,6 +1,6 @@
 import { action, observable } from 'mobx';
 
-import { InvoiceDetail } from './invoice-detail';
+import InvoiceDetail from './invoice-detail';
 
 
 class InProgressInvoice {
