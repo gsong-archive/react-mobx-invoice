@@ -15,26 +15,28 @@ export const STATUSES = {
 };
 
 
-function statusFor(invoice) {
-  switch (invoice.status) {
+export function statusFor(invoice) {
+  let status = invoice.status;
+
+  switch (status) {
     case STATUSES.SENT: {
       const due = moment(invoice.dueDate);
       if (due.isBefore(moment())) {
-        invoice.status = STATUSES.OVERDUE;
+        status = STATUSES.OVERDUE;
       }
-      return invoice.status;
+      return status;
     }
 
     case STATUSES.OVERDUE: {
       const due = moment(invoice.dueDate);
       if (due.isSameOrAfter(moment())) {
-        invoice.status = STATUSES.SENT;
+        status = STATUSES.SENT;
       }
-      return invoice.status;
+      return status;
     }
 
     default:
-      return invoice.status;
+      return status;
   }
 }
 
