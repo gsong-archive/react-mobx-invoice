@@ -38,6 +38,7 @@ export default class InvoiceItemForm extends React.Component {
 
     addItemFunc({ description, unitCost, quantity });
     this.setState({ ...defaultState });
+    // TODO: How do we select this via React?
     document.querySelector('#iif_description').focus();
   }
 

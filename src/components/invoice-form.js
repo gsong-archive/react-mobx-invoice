@@ -19,6 +19,7 @@ export default class InvoiceForm extends React.Component {
   }
 
   componentDidMount() {
+    // TODO: How do we select this via React?
     document.querySelector('#client').focus();
   }
 

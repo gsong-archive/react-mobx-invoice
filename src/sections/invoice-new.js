@@ -38,6 +38,8 @@ class NewInvoice extends React.Component {
 
   reset = () => {
     store.inProgressInvoice.reset();
+    // TODO: How do we select this via React?
+    document.querySelector('#client').focus();
   }
 
   render = () => {
