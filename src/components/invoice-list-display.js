@@ -25,7 +25,7 @@ const InvoiceListDisplay = ({ list, totalOutstanding }) => (
       <tr>
         <td colSpan="3" />
         <td>Total outstanding:</td>
-        <td>{totalOutstanding}</td>
+        <td>${totalOutstanding}</td>
         <td />
       </tr>
     </tfoot>
@@ -44,7 +44,7 @@ const InvoiceListDisplay = ({ list, totalOutstanding }) => (
             <Link to={`/invoice/${invoice.id}`}>{invoice.description}</Link>
           </td>
           <td>{invoice.displayDueDate}</td>
-          <td>{invoice.total}</td>
+          <td>${invoice.total}</td>
           <td><InvoiceStatusLabel invoice={invoice} /></td>
         </tr>
       ))}
